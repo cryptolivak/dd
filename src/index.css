@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-techno bg-galaxy text-white;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 10%, #232347 60%, #0a0927 100%);
+  font-family: 'Orbitron', ui-monospace, monospace;
+}
+
+.glow {
+  box-shadow: 0 0 12px #49eaff, 0 0 40px #49eaff33;
+}
+
+.galaxy-bg {
+  background: radial-gradient(ellipse at 50% 10%, #232347 60%, #0a0927 100%);
+  position: relative;
+  overflow: hidden;
+}
