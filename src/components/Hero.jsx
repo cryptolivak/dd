@@ -1,5 +1,6 @@
-import { useWallet, WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
 import React from 'react'
+import ConnectButton from './ConnectButton'
 
 export default function Hero() {
   return (
@@ -12,7 +13,7 @@ export default function Hero() {
         Command tokenized planets on Solana.<br /> Outmaneuver, attack, and rebuild in the cosmic arena.
       </p>
       <WalletModalProvider>
-        <WalletMultiButton className="glow !bg-neon !text-black !rounded-full !px-8 !py-3 !text-2xl !font-bold !uppercase hover:scale-105 transition" />
+        <ConnectButton />
       </WalletModalProvider>
     </section>
   )
