@@ -1,3 +1,5 @@
+import React from 'react'
+
 const planets = [
   { name: "Andromeda", status: "Colonized", volume: 2400, holders: 17 },
   { name: "NebulaX", status: "Under Attack", volume: 4300, holders: 14 },

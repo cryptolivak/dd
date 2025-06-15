@@ -1,14 +1,37 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
+const planets = ['Andromeda', 'NebulaX', 'Vortexal', 'Singularis']
 const demoLog = [
-  { id: 1, from: 'NebulaX', to: 'Andromeda', type: 'attack', time: '12s ago' },
-  { id: 2, from: 'Vortexal', to: 'NebulaX', type: 'raid', time: '2m ago' },
-  { id: 3, from: 'Andromeda', to: 'Singularis', type: 'attack', time: '4m ago' },
+  { id: 1, from: 'NebulaX', to: 'Andromeda', type: 'attack', time: 'just now' },
+  { id: 2, from: 'Vortexal', to: 'NebulaX', type: 'raid', time: '1m ago' },
+  { id: 3, from: 'Andromeda', to: 'Singularis', type: 'attack', time: '2m ago' },
 ]
 
 export default function RaidLog() {
   const [log, setLog] = useState(demoLog)
   const [explosion, setExplosion] = useState(null)
+
+  // Simulate incoming raids every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const from = planets[Math.floor(Math.random() * planets.length)]
+      let to = from
+      while (to === from) {
+        to = planets[Math.floor(Math.random() * planets.length)]
+      }
+      setLog((prev) => [
+        {
+          id: prev[0].id + 1,
+          from,
+          to,
+          type: 'attack',
+          time: new Date().toLocaleTimeString()
+        },
+        ...prev.slice(0, 19)
+      ])
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   // Demo: animate explosion on new log
   useEffect(() => {
