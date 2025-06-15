@@ -1,3 +1,4 @@
+import React from 'react'
 import Hero from './components/Hero'
 import Leaderboard from './components/Leaderboard'
 import RaidLog from './components/RaidLog'

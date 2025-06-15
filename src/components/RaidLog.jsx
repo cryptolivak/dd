@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const planets = ['Andromeda', 'NebulaX', 'Vortexal', 'Singularis']
 const demoLog = [

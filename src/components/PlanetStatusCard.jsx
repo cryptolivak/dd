@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function PlanetStatusCard({ planet, onClose }) {
   return (
     <div className="bg-blackhole/95 border-2 border-neon rounded-xl p-6 min-w-[240px] max-w-[90vw] shadow-neon flex flex-col items-center relative">
