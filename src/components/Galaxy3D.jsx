@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Stars } from '@react-three/drei'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { OrbitControls, Stars, Text } from '@react-three/drei'
 import PlanetStatusCard from './PlanetStatusCard'
 
 const PLANETS = [
@@ -13,11 +13,27 @@ const PLANETS = [
 
 function Planet({ data, onSelect }) {
   const ref = useRef()
+  const [hovered, setHovered] = useState(false)
+  useFrame(() => {
+    if (ref.current) ref.current.rotation.y += 0.005
+  })
   return (
-    <mesh ref={ref} position={data.position} onClick={() => onSelect(data)}>
-      <sphereGeometry args={[0.5, 32, 32]} />
-      <meshStandardMaterial color="#151515" emissive="#7f5af0" emissiveIntensity={0.8} />
-    </mesh>
+    <group position={data.position}>
+      <mesh
+        ref={ref}
+        onClick={() => onSelect(data)}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
+      >
+        <sphereGeometry args={[0.5, 32, 32]} />
+        <meshStandardMaterial color="#151515" emissive="#7f5af0" emissiveIntensity={0.8} />
+      </mesh>
+      {hovered && (
+        <Text position={[0, 0.8, 0]} fontSize={0.25} color="#49eaff" anchorX="center" anchorY="middle">
+          {data.name}
+        </Text>
+      )}
+    </group>
   )
 }
 
@@ -25,7 +41,7 @@ export default function Galaxy3D() {
   const [selected, setSelected] = useState(null)
 
   return (
-    <div className="relative w-full h-[400px]">
+    <div className="relative w-full h-screen">
       <Canvas camera={{ position: [0, 0, 7], fov: 60 }}>
         <ambientLight intensity={0.6} />
         <pointLight position={[5, 5, 5]} intensity={1} />
